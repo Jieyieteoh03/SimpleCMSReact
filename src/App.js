@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Home from "./pages/home";
+import Dashboard from "./pages/dashboard";
+import ManagePost from "./pages/manage-post";
+import ManagePostAdd from "./pages/manage-post-add";
+import ManagePostEdit from "./pages/manage-post-edit";
+import Post from "./pages/post";
+
+/*
+  / --> home
+  /dashboard --> Dashboard
+  /manage-post --> ManagePost
+*/
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/manage-post" element={<ManagePost />} />
+        <Route path="/manage-post-add" element={<ManagePostAdd />} />
+        <Route path="/manage-post-edit" element={<ManagePostEdit />} />
+        <Route path="/post" element={<Post />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,21 +1,40 @@
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  // // save item into local storage
+  // localStorage.setItem("title", "My Blog");
+
+  // // get item from local storage
+  // localStorage.getItem("title");
+  // // const desc = localStorage.getItem("desc"); call item
+
+  // get posts from local storage
+  const posts = JSON.parse(localStorage.getItem("posts"));
   return (
     <div className="container mx-auto my-5">
       <h1 className="h1 mb-4 text-center">My Blog</h1>
-      <div className="card mb-2">
-        <div className="card-body">
-          <h5 className="card-title">Post 4</h5>
-          <p className="card-text">Here's some content about post 4</p>
-          <div className="text-end">
-            <Link to="/post" className="btn btn-primary btn-sm">
-              Read More
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="card mb-2">
+      {posts
+        ? posts.map((post) => {
+            return (
+              <div key={post.id} className="card mb-2">
+                <div className="card-body">
+                  <h5 className="card-title">{post.title}</h5>
+                  <p className="card-text">{post.content}</p>
+                  <div className="text-end">
+                    <Link
+                      to={`/post/${post.id}`}
+                      className="btn btn-primary btn-sm"
+                    >
+                      Read More
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        : null}
+
+      {/* <div className="card mb-2">
         <div className="card-body">
           <h5 className="card-title">Post 3</h5>
           <p className="card-text">This is for post 3</p>
@@ -47,7 +66,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-4 d-flex justify-content-center gap-3">
         <Link to="/dashboard" className="btn btn-link btn-sm">
